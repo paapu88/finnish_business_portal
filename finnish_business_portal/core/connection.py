@@ -30,6 +30,7 @@ def get_page(url, user_agent="Google Chrome", wait_time=None, **kwargs):
     if wait_time:
         logger.debug(f"Waiting {wait_time} seconds")
         time.sleep(wait_time)
+        print(f"sleeping {wait_time} s...")
 
     headers = {
         'User-Agent': user_agent

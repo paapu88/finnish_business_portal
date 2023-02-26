@@ -1,3 +1,19 @@
+# MOK notes
+
+- business finland data 2015-2022 selected from https://tietopankki.businessfinland.fi/anonymous/extensions/MaksettuRahoitus/MaksettuRahoitus.html
+
+- download Finnish founded companies 2015-2019
+```commandline
+
+# after PRH stomps giving data, check csv file, last row , start loading again with updated datetime
+cd ~/git/Omat/HankenKandi/finnish_business_portal/finnish_business_portal/tasks/
+python getcompanies.py --year 2015 --month 11 --day 10
+# results in ~/git/Omat/HankenKandi/finnish_business_portal/data
+
+```
+- once we know y-code one can count how many financial statements there has been
+  (is the company really alive???)
+
 # Finnish Business Portal
 
 > Python interface for PRH corporate data
