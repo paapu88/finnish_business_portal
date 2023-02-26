@@ -178,6 +178,7 @@ def _query(urls, wait_time, loop_results=False):
     query_result = []
     for url in urls:
         page = get_page(url, wait_time=wait_time)
+        #print(page.text)
         json = page.json()
         
         next_url, result = json["nextResultsUri"], json["results"]
