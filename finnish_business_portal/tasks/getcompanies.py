@@ -1,5 +1,7 @@
 """
-python getcompanies.py --year 2015 --month 11 --day 10
+python getcompanies.py --year 2016 --month 1 --day 24
+#python getcompanies.py --year 2015 --month 11 --day 10
+
 """
 
 import finnish_business_portal as busportal
@@ -30,22 +32,29 @@ maxdate = datetime(year=2019, month=12, day=31)
 dfs=[]
 while mydate < maxdate:
     print(mydate)
-    portal = busportal.search(companyRegistrationFrom=mydate.strftime('%Y-%m-%d'),
-                              companyRegistrationTo=(mydate+timedelta(days=1)).strftime('%Y-%m-%d'),
-                              maxResults=2)
+    errors=False
     try:
-        dfnow = portal.to_frame().results
+        portal = busportal.search(companyRegistrationFrom=mydate.strftime('%Y-%m-%d'),
+                                  companyRegistrationTo=(mydate+timedelta(days=1)).strftime('%Y-%m-%d'),
+                                  maxResults=2)
     except:
-        dfnow = None
-        time.sleep(10)
-    if dfnow is not None and len(dfnow)> 0:
-        dfs.append(dfnow)
-    else:
-        print(f"WARNING: no data for date {mydate}")
-    mydate = mydate +timedelta(days=1)
-    if len(dfs)>0:
-        df = pd.concat(dfs)
-        df.to_csv(f'../../data/firmorfrom{args.year}{str(args.month).zfill(2)}{str(args.day).zfill(2)}.csv')
+        errors=True
+        print(f"due to errors sleeping 30s...")
+        time.sleep(30)
+    if not errors:
+        try:
+            dfnow = portal.to_frame().results
+        except:
+            dfnow = None
+            time.sleep(10)
+        if dfnow is not None and len(dfnow)> 0:
+            dfs.append(dfnow)
+        else:
+            print(f"WARNING: no data for date {mydate}")
+        mydate = mydate +timedelta(days=1)
+        if len(dfs)>0:
+            df = pd.concat(dfs)
+            df.to_csv(f'../../data/firmorfrom{args.year}{str(args.month).zfill(2)}{str(args.day).zfill(2)}.csv')
 
 # errors
 """
