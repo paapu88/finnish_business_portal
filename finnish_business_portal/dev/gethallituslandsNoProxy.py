@@ -59,11 +59,16 @@ for index, row in indf.iterrows():
     tyhjenna.click()
     time.sleep(2) #
 
-    business = browser.find_element(By.ID, "businessId")
-    business.send_keys(str(row['businessId']).strip())
-    button = browser.find_element(By.NAME, "_eventId_search")
-    button.click()
-    time.sleep(2) #
+    try:
+        business = browser.find_element(By.ID, "businessId")
+        business.send_keys(str(row['businessId']).strip())
+        button = browser.find_element(By.NAME, "_eventId_search")
+        button.click()
+        time.sleep(2) #
+    except:
+        print(f"problem with busines id. {row['businessId']}")
+        result['lands'].append(None)
+        continue
 
     try:
         table = browser.find_element(By.ID, "foundCompanies")
