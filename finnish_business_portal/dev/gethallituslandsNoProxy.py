@@ -69,7 +69,7 @@ for index, row in indf.iterrows():
         print(f"problem with busines id. {row['businessId']}")
         result['lands'].append(None)
         continue
-
+    #time.sleep(200)
     try:
         table = browser.find_element(By.ID, "foundCompanies")
     except:
