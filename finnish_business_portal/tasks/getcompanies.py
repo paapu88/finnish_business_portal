@@ -1,6 +1,6 @@
 """
-python getcompanies.py --year 2016 --month 1 --day 24
-#python getcompanies.py --year 2015 --month 11 --day 10
+#python getcompanies.py --year 2016 --month 1 --day 24
+python getcompanies.py --year 2015 --month 11 --day 10
 
 """
 
@@ -10,7 +10,7 @@ import pandas as pd
 import time
 import argparse
 
-parser = argparse.ArgumentParser(description="Download metno data ")
+parser = argparse.ArgumentParser(description="Download company data ")
 parser.add_argument(
     "--year",
     help="start year", type=int,
@@ -24,11 +24,12 @@ parser.add_argument(
     help="start month",type=int,
 )
 args = parser.parse_args()
+maxdate = datetime(year=2015, month=12, day=31)
 busportal = busportal.SearchModel("BisCompany",loop_results=True, deep=True)
 
 mydate = datetime(year=args.year, month=args.month, day=args.day)
 init = mydate
-maxdate = datetime(year=2019, month=12, day=31)
+
 dfs=[]
 while mydate < maxdate:
     print(mydate)
