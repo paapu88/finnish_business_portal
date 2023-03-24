@@ -43,7 +43,11 @@ chrome_prefs = {
 options.add_experimental_option("prefs", chrome_prefs)
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
+problem_ones = ["2673443-2","2674564-1","2674060-5"]
 for index, row in df.iterrows():
+    if str(row['businessId']).strip() in problem_ones:
+        print(f"skipping problem {row['businessId']}")
+        continue
     current_company_file = f"./firmor/{str(row['businessId']).strip()}_tiedot.csv"
     print(current_company_file)
     if Path(current_company_file).exists():
@@ -55,17 +59,17 @@ for index, row in df.iterrows():
             browser.get(url)
             #browser.refresh()
             #driver.maximize_window()
-            time.sleep(0.4) #
+            time.sleep(1.6) #
             print(f"search for business id :{row['businessId']}")
             #result['id'].append(row['businessId'])
             business = browser.find_element(By.ID, "criteriaText")
             business.clear()
             business.send_keys(str(row['businessId']).strip())
-            time.sleep(0.2)
+            time.sleep(0.8)
             hae = browser.find_element(By.NAME, "_eventId_search")
             hae.click()
             #table = browser.find_element(By.ID, "foundCompanies")
-            time.sleep(0.4)
+            time.sleep(1.6)
             html = browser.page_source
 
             df = pd.read_html(html)
@@ -78,4 +82,4 @@ for index, row in df.iterrows():
             ok=False
     #print(df)
     #print(f"{str(row['businessId']).strip()}_tiedot.csv")
-    time.sleep(1.0)
+    time.sleep(4.0)
