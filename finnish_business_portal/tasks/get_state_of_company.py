@@ -43,7 +43,7 @@ chrome_prefs = {
 options.add_experimental_option("prefs", chrome_prefs)
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-problem_ones = ["2673443-2","2674564-1","2674060-5"]
+problem_ones = ["2673443-2","2674564-1","2674060-5","2675811-9","2676306-5","2677768-6","2680347-7"]
 for index, row in df.iterrows():
     if str(row['businessId']).strip() in problem_ones:
         print(f"skipping problem {row['businessId']}")
