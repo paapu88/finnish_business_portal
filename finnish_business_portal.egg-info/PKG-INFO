@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: finnish-business-portal
+Version: 2023.2
+Summary: collecting financial data in Finland
+Home-page: UNKNOWN
+Author: markus.kaukonen@student.hanken.fi
+Author-email: markus.kaukonen@student.hanken.fi
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.7
+License-File: LICENSE
+
+UNKNOWN
+

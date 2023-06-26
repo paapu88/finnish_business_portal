@@ -43,7 +43,8 @@ chrome_prefs = {
 options.add_experimental_option("prefs", chrome_prefs)
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-problem_ones = ["2673443-2","2674564-1","2674060-5","2675811-9","2676306-5","2677768-6","2680347-7"]
+problem_ones = ["2673443-2","2674564-1","2674060-5","2675811-9","2676306-5","2677768-6","2680347-7",
+                "2683092-6","2691471-6","2692852-8","2698091-6","2734096-1", "2736283-7","2736964-1"]
 for index, row in df.iterrows():
     if str(row['businessId']).strip() in problem_ones:
         print(f"skipping problem {row['businessId']}")
@@ -59,17 +60,17 @@ for index, row in df.iterrows():
             browser.get(url)
             #browser.refresh()
             #driver.maximize_window()
-            time.sleep(1.6) #
+            time.sleep(0.4) #
             print(f"search for business id :{row['businessId']}")
             #result['id'].append(row['businessId'])
             business = browser.find_element(By.ID, "criteriaText")
             business.clear()
             business.send_keys(str(row['businessId']).strip())
-            time.sleep(0.8)
+            time.sleep(0.4)
             hae = browser.find_element(By.NAME, "_eventId_search")
             hae.click()
             #table = browser.find_element(By.ID, "foundCompanies")
-            time.sleep(1.6)
+            time.sleep(0.8)
             html = browser.page_source
 
             df = pd.read_html(html)
@@ -82,4 +83,4 @@ for index, row in df.iterrows():
             ok=False
     #print(df)
     #print(f"{str(row['businessId']).strip()}_tiedot.csv")
-    time.sleep(4.0)
+    time.sleep(1.0)
